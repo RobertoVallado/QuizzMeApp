@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizzMe", "QuizzMe\QuizzMe.csproj", "{78FC0FB3-B026-4F59-BB46-5303B7122BB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLibrary", "DataLibrary\DataLibrary.csproj", "{2F916FDD-0CBB-4439-9CA1-BB568F737A34}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78FC0FB3-B026-4F59-BB46-5303B7122BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78FC0FB3-B026-4F59-BB46-5303B7122BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78FC0FB3-B026-4F59-BB46-5303B7122BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78FC0FB3-B026-4F59-BB46-5303B7122BB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F916FDD-0CBB-4439-9CA1-BB568F737A34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F916FDD-0CBB-4439-9CA1-BB568F737A34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F916FDD-0CBB-4439-9CA1-BB568F737A34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F916FDD-0CBB-4439-9CA1-BB568F737A34}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2201BA82-0B46-427C-B9BF-1D2C4469BEDB}
+	EndGlobalSection
+EndGlobal
