@@ -15,8 +15,7 @@ namespace QuizzMe.Models
         public string CorrectAnswers { get; set; }
         public string IncorrectAnswers { get; set; }
         public int Score { get; set; }
-       
-        public bool HighestScore { get; set; }
+        public int HighestScore { get; set; }
 
     }
 }

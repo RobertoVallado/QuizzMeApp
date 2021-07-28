@@ -30,20 +30,20 @@ namespace QuizzMe.Controllers
 
         // POST api/<controller>
         //public void Post([FromBody] string value)
-        public string Post(UserModel user)
+        public async Task<string> Post(UserModel user)
         {
             try
             {
                 string sql = @"INSERT INTO users (FirstName, LastName, USerEmail, CreatedAt)
                                VALUES(@FirstName, @LastName, @UserEmail, localtime());";
 
-                var users_ = data_.SaveData<dynamic>(sql, new {
+                 await data_.SaveData<dynamic>(sql, new {
                     FirstName = $"{user.FirstName}",
                     LastName = $"{user.LastName}",
                     UserEmail = $"{user.UserEmail}"},
                     ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString);
 
-                return "User Added succesfully!";
+                return "User Added successfully!";
             }
             catch (Exception)
             {
@@ -68,7 +68,7 @@ namespace QuizzMe.Controllers
                     UserEmail = $"{user.UserEmail}"},
                     ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString);
 
-                return "User Updated succesfully!";
+                return "User Updated successfully!";
             }
             catch (Exception)
             {

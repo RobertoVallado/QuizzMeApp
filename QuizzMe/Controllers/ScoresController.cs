@@ -39,58 +39,45 @@ namespace QuizzMe.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, table);
         }
 
-        public string Post(ScoreModel board) //FIRST TEST SCORE POST INPUT
-        {
+        public async Task<string> Post(ScoreModel board)
+        { 
             try
             { 
-                string sql = @"INSERT INTO scores 
-                              (UserId,TestId,TestTime,TestDate,Score,CorrectAnswers,IncorrectAnswers,HighestScore)
-                              VALUES(@UserId,@TestId,@TestTime, localtime(),@Score,@CorrectAnswers,@IncorrectAnswers,@HighestScore);";
+                string sql = @"INSERT INTO scores (UserId, TestId, TestTime, TestDate, CorrectAnswers, IncorrectAnswers, Score, HighestScore)
+                                          VALUES (@UserId, @TestId, @TestTime, @TestDate, @CorrectAnswers, @IncorrectAnswers, @Score, @HighestScore);";
 
-                var board_ = data_.SaveData<dynamic>(sql, new {
+                await data_.SaveData<dynamic>(sql, new {
                         UserId = $"{board.UserId}",
                         TestId= $"{board.TestId}",
                         TestTime = $"{board.TestTime}",
-                        Score = $"{board.Score}",
+                        TestDate = $"{board.TestDate}",
                         CorrectAnswers = $"{board.CorrectAnswers}",
                         IncorrectAnswers = $"{board.IncorrectAnswers}",
-                        HighestScore = $"{board.HighestScore}"},
+                        Score = $"{board.Score}",
+                        HighestScore = $"{board.HighestScore}"}, ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString);
 
-                    ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString);
-
-                return "New Score has been added succesfully!";
+                return "New Score has been added successfully!";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return "Failed to add data.";
             }
         }
 
-        // PUT api/<controller>/5
         //public void Put(int id, [FromBody] string value)
-        public string Put(ScoreModel board) //update board
+        public string Put(int userId, int testId) //update high scores boolean values
         {
             try
             {
                 string sql = @"UPDATE scores 
-                              SET HighestScore = @HighestScore
-                              WHERE ScoreId = @ScoreId;";
-               /* string sql = @"UPDATE scores 
-                              SET TestTime = localtime(), TestDate = localtime(), TimesTaken = (@TimesTaken +1),
-                                  Result = @Result, CorrectAnswers = @CorrectAnswers, IncorrectAnswers = @IncorrectAnswers,
-                                  HighestScore = @HighestScore
-                              WHERE ScoreId = @ScoreId;";*/
-           
-                var board_ = data_.SaveData<dynamic>(sql, new { 
-                    Score = $"{board.Score}",
-                    CorrectAnswers = $"{board.CorrectAnswers}",
-                    IncorrectAnswers = $"{board.IncorrectAnswers}",
-                    HighestScore = $"{board.HighestScore}",
-                    ScoreId = $"{board.ScoreId}"},
+                              SET HighestScore = 0
+                              WHERE UserId = @UserId AND TestId = @TestId;";
+
+                var board_= data_.SaveData<dynamic>(sql,new { UserId = $"{userId}", TestId = $"{testId}" },
 
                     ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString);
 
-                return "Score Updated succesfully!";
+                return "Score Updated successfully!";
             }
             catch (Exception)
             {
@@ -109,7 +96,7 @@ namespace QuizzMe.Controllers
                 var board_ = data_.SaveData<dynamic>(sql, new { ScoreId = $"{id}" },
                     ConfigurationManager.ConnectionStrings["myDatabaseConnection"].ConnectionString);
 
-                return "Score Deleted succesfully!";
+                return "Score Deleted successfully!";
             }
             catch (Exception)
             {
